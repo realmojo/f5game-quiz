@@ -35,7 +35,10 @@ header button {
 main {
   background: #f5f5f5;
 }
-
+.make-layout {
+  width: 600px;
+  margin: 0 auto;
+}
 .site-layout {
   width: 900px;
   margin: 0 auto;
@@ -45,4 +48,13 @@ main {
   .site-layout {
     width: 100%;
   }
+}
+
+.ant-btn-primary {
+  background-color: #1677ff !important;
+}
+.test-subtitle {
+  font-size: 18px;
+  color: rgba(28, 116, 233, 1);
+  font-weight: bold;
 }

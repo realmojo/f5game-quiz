@@ -1,0 +1,21 @@
+{
+  "idx": 33,
+  "quiz_type": "answer", // scorem
+  "contents": [
+    {
+      "title": {
+        "type": "image", // text,
+        "text": "text",
+        "url": "url"
+      },
+      "questions": [
+        {
+          "type": "text", // image
+          "text": "text",
+          "url": "",
+          "answer": true // false
+        }
+      ]
+    }
+  ]
+}
