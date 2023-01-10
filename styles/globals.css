@@ -1,8 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 * {
+  font-family: "Nanum Gothic", sans-serif;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -19,15 +21,19 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
 }
-header > a {
-  padding-left: 14px;
+header > .header-wrap {
+  width: 600px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+header > .header-wrap > a {
   color: white;
   font-size: 24px;
   /* font-weight: bold; */
-  padding-top: 10px;
 }
-header button {
+header > .header-wrap > button {
   padding-right: 14px;
   color: white;
 }
@@ -57,4 +63,73 @@ main {
   font-size: 18px;
   color: rgba(28, 116, 233, 1);
   font-weight: bold;
+}
+
+/* start - test */
+.test-main-background {
+  background: transparent;
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(1, 1, 1, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+  mask-image: linear-gradient(to bottom, rgba(1, 1, 1, 1), rgba(0, 0, 0, 0));
+}
+.test-main {
+  background: transparent;
+  position: relative;
+}
+.test-main > .ant-layout {
+  background: transparent;
+}
+.test-layout {
+  width: 600px;
+  margin: 0 auto;
+}
+.test-logo {
+  margin-top: 40px;
+}
+.test-logo > h1 {
+  text-align: center;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 28px;
+}
+.test-logo > p {
+  margin: 0 auto;
+  text-align: center;
+  width: 336px;
+  font-size: 16px;
+  color: rgb(68, 63, 63);
+}
+.test-logo > .name-input {
+  width: 336px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+.btn-start {
+  width: 336px;
+  height: 40px;
+  margin: 0 auto;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  header {
+    width: 100%;
+  }
+  header > .header-wrap {
+    padding-left: 10px;
+  }
+  .test-logo > h1 {
+    padding-top: 20px;
+  }
+  .test-layout {
+    width: 100%;
+  }
+  .test-logo {
+    margin-top: 0px;
+  }
 }
