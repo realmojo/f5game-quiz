@@ -5,6 +5,7 @@ import { Header } from "../../components/Header";
 import { Step1 } from "../../components/Step1";
 import { Step2 } from "../../components/Step2";
 import { Step3 } from "../../components/Step3";
+import { Step4 } from "../../components/Step4";
 import { useRouter } from "next/router";
 import axios from "axios";
 
@@ -14,6 +15,9 @@ const steps = [
   },
   {
     title: "이미지 등록",
+  },
+  {
+    title: "결과 분석 등록",
   },
   {
     title: "미리보기",
@@ -85,7 +89,18 @@ export default function Make({ S3_KEY }) {
             ) : (
               ""
             )}
-            {current === 2 ? <Step3 prev={prev} idx={idx} /> : ""}
+            {current === 2 ? (
+              <Step3
+                prev={prev}
+                next={next}
+                idx={idx}
+                quizItem={quizItem}
+                S3_KEY={S3_KEY}
+              />
+            ) : (
+              ""
+            )}
+            {current === 3 ? <Step4 prev={prev} idx={idx} /> : ""}
           </div>
         </Layout>
       </main>

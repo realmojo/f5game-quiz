@@ -10,7 +10,7 @@ export const QuizCard = ({ item }) => {
         <img
           alt={item.title}
           src={item.logo}
-          style={{ width: 320, height: 320 }}
+          style={{ width: 320, height: 320, margin: "0 auto" }}
         />
       }
     >

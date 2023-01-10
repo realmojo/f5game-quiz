@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { InputNumber, Input, Button, Divider, Radio, Typography } from "antd";
+import { Input, Button, Divider, Radio } from "antd";
 import AWS from "aws-sdk";
 import shortId from "shortid";
 import axios from "axios";
@@ -54,10 +54,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
       contents,
     };
     if (idx) {
-      const { data } = await axios.post(
-        "https://f5game.co.kr/api/quiz/update/content/",
-        params
-      );
+      await axios.post("https://f5game.co.kr/api/quiz/update/content/", params);
     }
     next();
   };
@@ -83,9 +80,10 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
     const files = Array.from(e.target.files);
 
     for (let index = 0; index < files.length; index++) {
+      const ext = files[index].type.split("/")[1];
       const params = {
-        Bucket: "f5game-quiz",
-        Key: `images/${idx}/${shortId.generate()}`,
+        Bucket: "f5game-quiz-image",
+        Key: `images/${idx}/${shortId.generate()}.${ext}`,
         Body: files[index],
       };
 
@@ -93,12 +91,12 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
         if (err) {
           console.log(err);
         }
-        const param = {
-          idx,
-          logo: data.Location,
-        };
+        // const param = {
+        //   idx,
+        //   logo: data.Location,
+        // };
 
-        await axios.post("https://f5game.co.kr/api/quiz/update/logo/", param);
+        // await axios.post("https://f5game.co.kr/api/quiz/update/logo/", param);
 
         const d = contents.map((item, key) => {
           if (key === _index) {
@@ -158,34 +156,31 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
           text: "",
           url: "",
         },
+        answer: 0,
         questions: [
           {
             key: 0,
             type: "text", // image
             text: "",
             url: "",
-            answer: true, // false
           },
           {
             key: 1,
             type: "text", // image
             text: "",
             url: "",
-            answer: false, // false
           },
           {
             key: 2,
             type: "text", // image
             text: "",
             url: "",
-            answer: false, // false
           },
           {
             key: 3,
             type: "text", // image
             text: "",
             url: "",
-            answer: false, // false
           },
         ],
       },
@@ -202,15 +197,17 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
   const s3 = new AWS.S3({
     accessKeyId: S3_KEY.S3_ACCESS_KEY_ID,
     secretAccessKey: S3_KEY.S3_SECRET_ACCESS_KEY,
+    region: "ap-northeast-2",
   });
 
   const handleFilesChange = async ({ target }) => {
     const files = Array.from(target.files);
 
     for (let index = 0; index < files.length; index++) {
+      const ext = files[index].type.split("/")[1];
       const params = {
-        Bucket: "f5game-quiz",
-        Key: `images/${idx}/${shortId.generate()}`,
+        Bucket: "f5game-quiz-image",
+        Key: `images/${idx}/${shortId.generate()}.${ext}`,
         Body: files[index],
       };
 
