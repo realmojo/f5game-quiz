@@ -26,7 +26,6 @@ export const Step3 = ({ prev, idx }) => {
       const { data } = await axios.get(
         `https://f5game.co.kr/api/quiz/?idx=${idx}`
       );
-      console.log(data);
       setItem(data);
     })();
   }, []);

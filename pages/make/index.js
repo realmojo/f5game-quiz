@@ -93,12 +93,11 @@ export default function Make({ S3_KEY }) {
   );
 }
 export const getServerSideProps = async ({ req, params }) => {
-  console.log(req);
   return {
     props: {
       S3_KEY: {
-        ACCESS_KEY: process.env.ACCESS_KEY,
-        ACCESS_SECRET_KEY: process.env.ACCESS_SECRET_KEY,
+        S3_ACCESS_KEY_ID: process.env.S3_ACCESS_KEY_ID,
+        S3_SECRET_ACCESS_KEY: process.env.S3_SECRET_ACCESS_KEY,
       },
     },
   };

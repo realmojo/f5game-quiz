@@ -58,7 +58,6 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
         "https://f5game.co.kr/api/quiz/update/content/",
         params
       );
-      console.log(data);
     }
     next();
   };
@@ -102,7 +101,6 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
         await axios.post("https://f5game.co.kr/api/quiz/update/logo/", param);
 
         const d = contents.map((item, key) => {
-          console.log(key, _index);
           if (key === _index) {
             return {
               ...item,
@@ -202,8 +200,8 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
     setContentType(e.target.value);
   };
   const s3 = new AWS.S3({
-    accessKeyId: S3_KEY.ACCESS_KEY,
-    secretAccessKey: S3_KEY.ACCESS_SECRET_KEY,
+    accessKeyId: S3_KEY.S3_ACCESS_KEY_ID,
+    secretAccessKey: S3_KEY.S3_SECRET_ACCESS_KEY,
   });
 
   const handleFilesChange = async ({ target }) => {
@@ -237,7 +235,6 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
         const { data } = await axios.get(
           `https://f5game.co.kr/api/quiz/contents/?quizIdx=${idx}`
         );
-        console.log(data);
         setContents(data.contents);
         setLogo(quizItem.logo);
         setContentType(data.type);
