@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Divider } from "antd";
 const { TextArea } = Input;
-import { QuizCard } from "./QuizCard";
+import { TestCard } from "./TestCard";
 import axios from "axios";
 import AWS from "aws-sdk";
 import shortId from "shortid";
@@ -13,7 +13,7 @@ const answerResultItem = {
   text: "",
 };
 
-export const Step3 = ({ next, prev, idx, quizItem, S3_KEY }) => {
+export const Step3 = ({ next, prev, idx, testItem, S3_KEY }) => {
   const s3 = new AWS.S3({
     accessKeyId: S3_KEY.S3_ACCESS_KEY_ID,
     secretAccessKey: S3_KEY.S3_SECRET_ACCESS_KEY,
@@ -39,12 +39,12 @@ export const Step3 = ({ next, prev, idx, quizItem, S3_KEY }) => {
   const resultUpdate = async () => {
     try {
       const params = {
-        quizIdx: idx,
+        testIdx: idx,
         results,
       };
       console.log(params);
       const data = await axios.post(
-        "https://f5game.co.kr/api/quiz/update/result/",
+        "https://f5game.co.kr/api/test/update/result/",
         params
       );
       next();
@@ -59,7 +59,7 @@ export const Step3 = ({ next, prev, idx, quizItem, S3_KEY }) => {
     for (let index = 0; index < files.length; index++) {
       const ext = files[index].type.split("/")[1];
       const params = {
-        Bucket: "f5game-quiz-image",
+        Bucket: "f5game-test-image",
         Key: `images/${idx}/${shortId.generate()}.${ext}`,
         Body: files[index],
       };
@@ -120,10 +120,10 @@ export const Step3 = ({ next, prev, idx, quizItem, S3_KEY }) => {
   };
 
   useEffect(() => {
-    if (quizItem.idx) {
+    if (testItem.idx) {
       (async () => {
         const { data } = await axios.get(
-          `https://f5game.co.kr/api/quiz/contents/?quizIdx=${idx}`
+          `https://f5game.co.kr/api/test/contents/?testIdx=${idx}`
         );
         setResults(data.results);
       })();
@@ -133,7 +133,7 @@ export const Step3 = ({ next, prev, idx, quizItem, S3_KEY }) => {
   return (
     <div className="mt-10">
       <div className="text-center">
-        {item.title ? <QuizCard item={item} /> : ""}
+        {item.title ? <TestCard item={item} /> : ""}
       </div>
 
       {results.length > 0 &&
@@ -197,7 +197,7 @@ export const Step3 = ({ next, prev, idx, quizItem, S3_KEY }) => {
                 className="mb-4"
               />
 
-              {/* <div className="text-sm font-bold mb-1">퀴즈 질문</div>
+              {/* <div className="text-sm font-bold mb-1">테스트 질문</div>
 
             <Radio.Group onChange={onChangeAnswer} value={item.answer}>
               {item.questions.map((_item, _key) => (

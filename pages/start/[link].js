@@ -17,7 +17,7 @@ export default function Start({ item }) {
 export const getServerSideProps = async ({ req, params }) => {
   const { link } = params;
   const res = await axios.get(
-    `${process.env.BASE_API_URL}/quiz/getQuizByLink.php?link=${link}`
+    `${process.env.BASE_API_URL}/test/getTestByLink.php?link=${link}`
   );
   return { props: { item: res.data, NODE_ENV: process.env.NODE_ENV } };
 };

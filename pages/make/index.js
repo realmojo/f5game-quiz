@@ -28,7 +28,7 @@ const items = steps.map((item) => ({ key: item.title, title: item.title }));
 export default function Make({ S3_KEY }) {
   const router = useRouter();
   const [idx, setIdx] = useState(router.query.idx ? router.query.idx : 0);
-  const [quizItem, setQuizItem] = useState({});
+  const [testItem, setTestItem] = useState({});
   const [current, setCurrent] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -43,9 +43,9 @@ export default function Make({ S3_KEY }) {
     if (idx) {
       (async () => {
         const { data } = await axios.get(
-          `https://f5game.co.kr/api/quiz/?idx=${idx}`
+          `https://f5game.co.kr/api/test/?idx=${idx}`
         );
-        setQuizItem(data);
+        setTestItem(data);
         setTitle(data.title);
         setDescription(data.description);
       })();
@@ -55,8 +55,8 @@ export default function Make({ S3_KEY }) {
   return (
     <>
       <Head>
-        <title>F5 Quiz - 모두의 퀴즈 만들기</title>
-        <meta name="description" content="퀴즈 만들기" />
+        <title>F5 Test - 모두의 테스트 만들기</title>
+        <meta name="description" content="테스트 만들기" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -83,7 +83,7 @@ export default function Make({ S3_KEY }) {
                 next={next}
                 prev={prev}
                 idx={idx}
-                quizItem={quizItem}
+                testItem={testItem}
                 S3_KEY={S3_KEY}
               />
             ) : (
@@ -94,7 +94,7 @@ export default function Make({ S3_KEY }) {
                 prev={prev}
                 next={next}
                 idx={idx}
-                quizItem={quizItem}
+                testItem={testItem}
                 S3_KEY={S3_KEY}
               />
             ) : (

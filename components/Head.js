@@ -3,7 +3,7 @@ import Head from "next/head";
 export const HeadComponent = ({ item }) => {
   return (
     <Head>
-      <title>{item.title} - F5 Quiz</title>
+      <title>{item.title} - F5 Test</title>
       <meta name="robots" content="index, follow" />
       <meta charset="utf-8" />
       <meta name="description" content={item.description} />
@@ -11,26 +11,26 @@ export const HeadComponent = ({ item }) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
 
-      <link rel="canonical" href="https://quiz.f5game.co.kr" />
-      <link rel="icon" href="https://quiz.f5game.co.kr/favicon.ico" />
-      <meta name="title" content={`${item.title} - F5 Quiz`} />
-      <meta name="plink" content="https://quiz.f5game.co.kr" />
+      <link rel="canonical" href="https://test.f5game.co.kr" />
+      <link rel="icon" href="https://test.f5game.co.kr/favicon.ico" />
+      <meta name="title" content={`${item.title} - F5 Test`} />
+      <meta name="plink" content="https://test.f5game.co.kr" />
       <meta name="keywords" content={item.title} />
       <meta name="description" content={item.desciption} />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://quiz.f5game.co.kr" />
+      <meta property="og:url" content="https://test.f5game.co.kr" />
       <meta property="og:article:author" content="F5game" />
-      <meta property="og:site_name" content={`${item.title} - F5 Quiz`} />
-      <meta property="og:title" content={`${item.title} - F5 Quiz`} />
+      <meta property="og:site_name" content={`${item.title} - F5 Test`} />
+      <meta property="og:title" content={`${item.title} - F5 Test`} />
       <meta property="og:description" content={item.desciption} />
       <meta
         property="og:image"
         content="https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
       />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@quiz.f5game.co.kr" />
-      <meta name="twitter:title" content={`${item.title} - F5 Quiz`} />
+      <meta name="twitter:site" content="@test.f5game.co.kr" />
+      <meta name="twitter:title" content={`${item.title} - F5 Test`} />
       <meta name="twitter:description" content={item.desciption} />
       <meta
         property="twitter:image"

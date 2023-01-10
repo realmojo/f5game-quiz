@@ -5,12 +5,14 @@ import Link from "next/link";
 export const Header = ({ NODE_ENV }) => {
   return (
     <header>
-      <Link href="/">F5 Quiz</Link>
+      <Link href="/">F5 Test</Link>
       {NODE_ENV === "development" ? (
         <div className="pt-2 pr-2">
-          <Button type="primary" size="large">
-            <Link href="/make">만들기</Link>
-          </Button>
+          <Link href="/make">
+            <Button type="primary" size="large">
+              만들기
+            </Button>
+          </Link>
         </div>
       ) : (
         ""

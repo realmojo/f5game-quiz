@@ -3,7 +3,7 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <head>
-        <title>퀴즈 심리 테스트 - F5 Games</title>
+        <title>테스트 심리 테스트 - F5 Games</title>
       </head>
       <body>{children}</body>
     </html>

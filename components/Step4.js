@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "antd";
-import { QuizCard } from "./QuizCard";
+import { TestCard } from "./TestCard";
 import axios from "axios";
 
 export const Step4 = ({ prev, idx }) => {
@@ -11,7 +11,7 @@ export const Step4 = ({ prev, idx }) => {
         idx,
         status: "active",
       };
-      await axios.post("https://f5game.co.kr/api/quiz/update/status/", params);
+      await axios.post("https://f5game.co.kr/api/test/update/status/", params);
       location.href = "/";
     } catch (e) {
       console.log(e);
@@ -21,7 +21,7 @@ export const Step4 = ({ prev, idx }) => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get(
-        `https://f5game.co.kr/api/quiz/?idx=${idx}`
+        `https://f5game.co.kr/api/test/?idx=${idx}`
       );
       setItem(data);
     })();
@@ -29,7 +29,7 @@ export const Step4 = ({ prev, idx }) => {
 
   return (
     <div>
-      <div>{item.title ? <QuizCard item={item} /> : ""}</div>
+      <div>{item.title ? <TestCard item={item} /> : ""}</div>
 
       <div className="mt-8">
         <Button className="mr-2" onClick={() => prev()}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Image } from "antd";
 const { Meta } = Card;
-export const QuizCard = ({ item }) => {
+export const TestCard = ({ item }) => {
   return (
     <Card
       hoverable

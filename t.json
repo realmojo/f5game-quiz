@@ -1,6 +1,6 @@
 {
   "idx": 33,
-  "quiz_type": "answer", // scorem
+  "test_type": "answer", // scorem
   "contents": [
     {
       "title": {

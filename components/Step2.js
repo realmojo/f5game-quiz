@@ -38,7 +38,7 @@ const defaultContent = {
   ],
 };
 
-export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
+export const Step2 = ({ next, prev, idx, testItem, S3_KEY }) => {
   const [contentType, setContentType] = useState("answer");
   // const [questionTextCount, setQuestionTextCount] = useState(4);
   // const [questionTextCountArr, setQuestionTextCountArr] = useState([
@@ -47,14 +47,14 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
   const [contents, setContents] = useState([defaultContent]);
   const [logo, setLogo] = useState("");
 
-  const quizUpdate = async () => {
+  const testUpdate = async () => {
     const params = {
-      quizIdx: idx,
+      testIdx: idx,
       type: contentType,
       contents,
     };
     if (idx) {
-      await axios.post("https://f5game.co.kr/api/quiz/update/content/", params);
+      await axios.post("https://f5game.co.kr/api/test/update/content/", params);
     }
     next();
   };
@@ -82,7 +82,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
     for (let index = 0; index < files.length; index++) {
       const ext = files[index].type.split("/")[1];
       const params = {
-        Bucket: "f5game-quiz-image",
+        Bucket: "f5game-test-image",
         Key: `images/${idx}/${shortId.generate()}.${ext}`,
         Body: files[index],
       };
@@ -96,7 +96,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
         //   logo: data.Location,
         // };
 
-        // await axios.post("https://f5game.co.kr/api/quiz/update/logo/", param);
+        // await axios.post("https://f5game.co.kr/api/test/update/logo/", param);
 
         const d = contents.map((item, key) => {
           if (key === _index) {
@@ -206,7 +206,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
     for (let index = 0; index < files.length; index++) {
       const ext = files[index].type.split("/")[1];
       const params = {
-        Bucket: "f5game-quiz-image",
+        Bucket: "f5game-test-image",
         Key: `images/${idx}/${shortId.generate()}.${ext}`,
         Body: files[index],
       };
@@ -220,20 +220,20 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
           logo: data.Location,
         };
 
-        await axios.post("https://f5game.co.kr/api/quiz/update/logo/", param);
+        await axios.post("https://f5game.co.kr/api/test/update/logo/", param);
         setLogo(data.Location);
       });
     }
   };
 
   useEffect(() => {
-    if (quizItem.idx) {
+    if (testItem.idx) {
       (async () => {
         const { data } = await axios.get(
-          `https://f5game.co.kr/api/quiz/contents/?quizIdx=${idx}`
+          `https://f5game.co.kr/api/test/contents/?testIdx=${idx}`
         );
         setContents(data.contents);
-        setLogo(quizItem.logo);
+        setLogo(testItem.logo);
         setContentType(data.type);
       })();
     }
@@ -255,7 +255,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
             onChange={handleFilesChange}
             className="mb-4"
           />
-          <div className="test-subtitle mb-1">퀴즈 타입</div>
+          <div className="test-subtitle mb-1">테스트 타입</div>
           <Radio.Group
             className="mb-4"
             onChange={onChangeType}
@@ -264,7 +264,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
             <Radio value="answer">정답형</Radio>
             <Radio value="score">점수형</Radio>
           </Radio.Group>
-          {/* <div className="test-subtitle mb-1">퀴즈 문항 개수</div>
+          {/* <div className="test-subtitle mb-1">테스트 문항 개수</div>
           <InputNumber
             min={1}
             max={4}
@@ -274,9 +274,9 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
           <Divider />
           {contents.map((item, key) => (
             <div key={key} className="mb-4">
-              <div className="test-subtitle mb-1">퀴즈 문항 {key + 1}</div>
+              <div className="test-subtitle mb-1">테스트 문항 {key + 1}</div>
               <div>
-                <div className="text-sm font-bold mb-1">퀴즈 제목 텍스트</div>
+                <div className="text-sm font-bold mb-1">테스트 제목 텍스트</div>
                 <Input
                   size="large"
                   placeholder="제목을 적어주세요"
@@ -284,7 +284,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
                   value={item.title.text}
                   onChange={(e) => onChangeTitleContent(key, e.target.value)}
                 />
-                <div className="text-sm font-bold mb-1">퀴즈 제목 이미지</div>
+                <div className="text-sm font-bold mb-1">테스트 제목 이미지</div>
                 {item.title.url ? (
                   <img
                     src={item.title.url}
@@ -300,7 +300,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
                   className="mb-4"
                 />
 
-                <div className="text-sm font-bold mb-1">퀴즈 질문</div>
+                <div className="text-sm font-bold mb-1">테스트 질문</div>
 
                 <Radio.Group onChange={onChangeAnswer} value={item.answer}>
                   {item.questions.map((_item, _key) => (
@@ -346,7 +346,7 @@ export const Step2 = ({ next, prev, idx, quizItem, S3_KEY }) => {
         <Button className="mr-2" onClick={() => prev()}>
           Previous
         </Button>
-        <Button type="primary" onClick={() => quizUpdate()}>
+        <Button type="primary" onClick={() => testUpdate()}>
           Next
         </Button>
       </div>

@@ -11,19 +11,19 @@ export const Step1 = ({
   description,
   setDescription,
 }) => {
-  const addQuiz = async () => {
+  const addTest = async () => {
     const params = {
       title,
       description,
     };
     if (!idx) {
       const { data } = await axios.post(
-        "https://f5game.co.kr/api/quiz/add/",
+        "https://f5game.co.kr/api/test/add/",
         params
       );
       setIdx(data);
     } else {
-      await axios.post("https://f5game.co.kr/api/quiz/update/", {
+      await axios.post("https://f5game.co.kr/api/test/update/", {
         ...params,
         idx,
       });
@@ -35,7 +35,7 @@ export const Step1 = ({
   return (
     <div className="mt-10">
       <div className="my-2">
-        <div className="test-subtitle mb-1">퀴즈 제목</div>
+        <div className="test-subtitle mb-1">테스트 제목</div>
         <Input
           size="large"
           placeholder="이름 혹은 별명을 적어주세요"
@@ -44,7 +44,7 @@ export const Step1 = ({
         />
       </div>
       <div className="my-2">
-        <div className="test-subtitle mb-1">퀴즈 설명</div>
+        <div className="test-subtitle mb-1">테스트 설명</div>
         <Input
           size="large"
           placeholder="설명을 적어주세요"
@@ -53,7 +53,7 @@ export const Step1 = ({
         />
       </div>
       <div className="mt-8">
-        <Button type="primary" onClick={() => addQuiz()}>
+        <Button type="primary" onClick={() => addTest()}>
           Next
         </Button>
       </div>
