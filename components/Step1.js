@@ -16,7 +16,6 @@ export const Step1 = ({
       title,
       description,
     };
-    console.log(idx);
     if (!idx) {
       const { data } = await axios.post(
         "https://f5game.co.kr/api/quiz/add/",

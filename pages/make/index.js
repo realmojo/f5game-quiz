@@ -1,11 +1,12 @@
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Steps } from "antd";
 import { Header } from "../../components/Header";
 import { Step1 } from "../../components/Step1";
 import { Step2 } from "../../components/Step2";
 import { Step3 } from "../../components/Step3";
-const { Step } = Steps;
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const steps = [
   {
@@ -21,7 +22,9 @@ const steps = [
 const items = steps.map((item) => ({ key: item.title, title: item.title }));
 
 export default function Make({ S3_KEY }) {
-  const [idx, setIdx] = useState(0);
+  const router = useRouter();
+  const [idx, setIdx] = useState(router.query.idx ? router.query.idx : 0);
+  const [quizItem, setQuizItem] = useState({});
   const [current, setCurrent] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -31,6 +34,20 @@ export default function Make({ S3_KEY }) {
   const prev = () => {
     setCurrent(current - 1);
   };
+
+  useEffect(() => {
+    if (idx) {
+      (async () => {
+        const { data } = await axios.get(
+          `https://f5game.co.kr/api/quiz/?idx=${idx}`
+        );
+        setQuizItem(data);
+        setTitle(data.title);
+        setDescription(data.description);
+      })();
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -58,7 +75,13 @@ export default function Make({ S3_KEY }) {
               ""
             )}
             {current === 1 ? (
-              <Step2 next={next} prev={prev} idx={idx} S3_KEY={S3_KEY} />
+              <Step2
+                next={next}
+                prev={prev}
+                idx={idx}
+                quizItem={quizItem}
+                S3_KEY={S3_KEY}
+              />
             ) : (
               ""
             )}
@@ -70,6 +93,7 @@ export default function Make({ S3_KEY }) {
   );
 }
 export const getServerSideProps = async ({ req, params }) => {
+  console.log(req);
   return {
     props: {
       S3_KEY: {
