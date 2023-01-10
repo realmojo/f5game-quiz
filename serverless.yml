@@ -1,2 +1,11 @@
-next-new:
+next-deploy:
   component: "./node_modules/@sls-next/serverless-component"
+  inputs:
+    bucketName: "f5game-quiz"
+    bucketRegion: "ap-northeast-2"
+    name:
+      defaultLambda: "m79oh16-9r3p3cc"
+      imageLambda: "m79oh16-u8q6qjk"
+    cloudfront:
+      distributionId: "EFSOB3GIBEUQR"
+      comment: "f5game-quiz nextjs deploy"
