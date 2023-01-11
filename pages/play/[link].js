@@ -27,6 +27,7 @@ export default function Play({ item }) {
     } else {
       setCurrent(nextValue);
     }
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {

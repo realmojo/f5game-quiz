@@ -46,11 +46,7 @@ export default function Home({ items, NODE_ENV }) {
         />
         <meta
           property="og:image"
-          content={
-            item.logo
-              ? item.logo
-              : "https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
-          }
+          content="https://f5game.s3.ap-northeast-2.amazonaws.com/f5game-test-logo.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@test.f5game.co.kr" />
@@ -64,19 +60,11 @@ export default function Home({ items, NODE_ENV }) {
         />
         <meta
           property="twitter:image"
-          content={
-            item.logo
-              ? item.logo
-              : "https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
-          }
+          content="https://f5game.s3.ap-northeast-2.amazonaws.com/f5game-test-logo.png"
         />
         <link
           rel="apple-touch-icon"
-          content={
-            item.logo
-              ? item.logo
-              : "https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
-          }
+          content="https://f5game.s3.ap-northeast-2.amazonaws.com/f5game-test-logo.png"
         />
       </Head>
       <main>
