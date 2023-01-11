@@ -115,6 +115,31 @@ main {
   margin: 0 auto;
   font-weight: bold;
 }
+.test-play-img {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.test-play-title {
+  font-weight: bold;
+  padding: 10px;
+  padding-left: 14px;
+  font-size: 14px;
+}
+.test-play-radio {
+  padding: 4px 10px;
+}
+.ant-space,
+.ant-space-item {
+  width: 100%;
+}
+.ant-space-item > label {
+  width: 100%;
+}
+.test-result-text {
+  padding: 10px;
+  /* white-space: pre-wrap; */
+}
 
 @media (max-width: 600px) {
   header {
@@ -123,13 +148,16 @@ main {
   header > .header-wrap {
     padding-left: 10px;
   }
+  .test-logo {
+    margin-top: 0px;
+  }
   .test-logo > h1 {
     padding-top: 20px;
   }
   .test-layout {
     width: 100%;
   }
-  .test-logo {
-    margin-top: 0px;
+  .test-play-img {
+    padding-top: 0;
   }
 }

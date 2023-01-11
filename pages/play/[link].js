@@ -1,56 +1,94 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Divider, Input, Layout } from "antd";
-import { AdsenseStart } from "../../components/Adsense/AdsenseStart";
+import { Button, Layout, Radio, Space } from "antd";
 import { HeadComponent } from "../../components/Head";
+import { AdsenseStart } from "../../components/Adsense/AdsenseStart";
+import { ResultLoading } from "../../components/ResultLoading";
 
 export default function Play({ item }) {
-  console.log(item);
+  const [current, setCurrent] = useState(0);
+  const [testAnswer, setTestAnswer] = useState([]);
+  const [isResultLoading, setIsResultLoading] = useState(false);
+  const onChangeTestAnswer = (index, value) => {
+    let newArr = [...testAnswer];
+    newArr[index] = value;
+    localStorage.setItem("f5game-test-answer", JSON.stringify(newArr));
+    setTestAnswer(newArr);
+  };
+
+  const doNext = (index) => {
+    if (!testAnswer[index]) {
+      alert("문항을 선택해 주세요");
+      return;
+    }
+    const nextValue = current + 1;
+    if (nextValue === item.contents.length) {
+      setIsResultLoading(true);
+    } else {
+      setCurrent(nextValue);
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("f5game-test-content-type", item.type);
+  }, []);
 
   return (
     <>
       <HeadComponent item={item} />
-      {/* <div
-        className="test-main-background"
-        style={{
-          backgroundColor: "transparent",
-          backgroundImage: `url(${item.logo})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: 1024,
-          width: "100%",
-          position: "absolute",
-        }}
-      ></div> */}
       <main className="test-main">
         <Layout className="test-layout">
-          {item.contents.map((test, index) => {
-            return (
-              <React.Fragment>
-                <div key={index}>
-                  <div>{test.title.text}</div>
-                  <img src={test.title.url} />
-                  {test.questions.map((question, _index) => {
-                    return <div key={_index}>{question.text}</div>;
-                  })}
+          {isResultLoading ? (
+            <ResultLoading item={item} testAnswer={testAnswer} />
+          ) : (
+            <React.Fragment>
+              {item.contents[current].title.url ? (
+                <div>
+                  <img
+                    className="test-play-img"
+                    src={item.contents[current].title.url}
+                    alt={item.contents[current].title.text}
+                  />
                 </div>
-                <Divider />
-              </React.Fragment>
-            );
-          })}
-          {/* <div className="test-logo">
-            <h1>{item.title}</h1>
-            <p>{item.description}</p>
-            <AdsenseStart />
-            <div className="text-center pt-2">
-              <a href={`/play/${item.link}`}>
-                <Button type="primary" className="btn-start">
-                  시작하기
+              ) : (
+                ""
+              )}
+
+              <div className="test-play-title">
+                {current + 1}. {item.contents[current].title.text}
+              </div>
+              <Radio.Group
+                onChange={(e) => onChangeTestAnswer(current, e.target.value)}
+                value={testAnswer[current]}
+              >
+                <Space size={0} direction="vertical">
+                  {item.contents[current].questions.map((question, _index) => {
+                    return (
+                      <Radio
+                        className="test-play-radio"
+                        key={`${current}-${_index}`}
+                        value={_index}
+                      >
+                        {question.text}
+                      </Radio>
+                    );
+                  })}
+                </Space>
+              </Radio.Group>
+              <div className="mt-2">
+                <AdsenseStart />
+              </div>
+              <div className="text-center mt-2">
+                <Button
+                  type="primary"
+                  className="btn-start"
+                  onClick={() => doNext(current)}
+                >
+                  다음
                 </Button>
-              </a>
-            </div>
-          </div> */}
+              </div>
+            </React.Fragment>
+          )}
         </Layout>
       </main>
     </>

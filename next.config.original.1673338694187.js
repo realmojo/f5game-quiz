@@ -1,5 +1,5 @@
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: ["f5game.s3.ap-northeast-2.amazonaws.com"],
   },
