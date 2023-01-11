@@ -33,6 +33,7 @@ export default function Home({ items, NODE_ENV }) {
                 <Link href={`/start/${item.link}`} target="_blank">
                   <Card
                     hoverable
+                    size="small"
                     height={400}
                     cover={
                       <img
@@ -43,10 +44,7 @@ export default function Home({ items, NODE_ENV }) {
                       />
                     }
                   >
-                    <Meta
-                      title={<h2>{item.title}</h2>}
-                      description={<p>{item.description}</p>}
-                    />
+                    <Meta title={<h2 className="text-sm">{item.title}</h2>} />
                   </Card>
                 </Link>
               </Col>

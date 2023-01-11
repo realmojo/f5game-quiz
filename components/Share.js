@@ -72,9 +72,7 @@ export const Share = ({ item }) => {
         <a
           href={`https://twitter.com/intent/tweet?text=${
             item.title
-          }?&url=https://test.f5game.co.kr/start/${encodeURIComponent(
-            item.link
-          )}`}
+          }?&url=https://test.f5game.co.kr/start/${encodeURI(item.link)}`}
           target="_blank"
           rel="noreferrer"
         >
