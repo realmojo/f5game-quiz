@@ -3,7 +3,7 @@ import { Spin, Button } from "antd";
 import Link from "next/link";
 import { AdsenseLoading } from "./Adsense/AdsenseLoading";
 
-export const ResultLoading = ({ item, testAnswer }) => {
+export const ResultLoading = ({ item, testAnswer, slotId }) => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     if (testAnswer.length === 0) {
@@ -50,7 +50,7 @@ export const ResultLoading = ({ item, testAnswer }) => {
       ) : (
         ""
       )}
-      <AdsenseLoading />
+      <AdsenseLoading slotId={slotId} />
       {isLoading ? (
         ""
       ) : (

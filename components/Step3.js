@@ -13,6 +13,10 @@ const answerResultItem = {
   text: "",
 };
 
+const replaceAll = (str, searchStr, replaceStr) => {
+  return str.split(searchStr).join(replaceStr);
+};
+
 export const Step3 = ({ next, prev, idx, testItem, S3_KEY }) => {
   const s3 = new AWS.S3({
     accessKeyId: S3_KEY.S3_ACCESS_KEY_ID,
@@ -125,7 +129,9 @@ export const Step3 = ({ next, prev, idx, testItem, S3_KEY }) => {
         const { data } = await axios.get(
           `https://f5game.co.kr/api/test/contents/?testIdx=${idx}`
         );
-        setResults(data.results);
+        if (data.results) {
+          setResults(data.results);
+        }
       })();
     }
   }, []);
@@ -136,7 +142,8 @@ export const Step3 = ({ next, prev, idx, testItem, S3_KEY }) => {
         {item.title ? <TestCard item={item} /> : ""}
       </div>
 
-      {results.length > 0 &&
+      {results &&
+        results.length > 0 &&
         results.map((item, key) => (
           <div key={key} className="mb-4">
             <div className="test-subtitle mb-1">결과 {key + 1}</div>
@@ -180,7 +187,7 @@ export const Step3 = ({ next, prev, idx, testItem, S3_KEY }) => {
               <TextArea
                 placeholder="결과를 글로 입력해주세요"
                 className="mb-4"
-                value={item.text}
+                value={replaceAll(item.text, "<br />", "\n")}
                 rows={7}
                 onChange={(e) => onChangeText(key, e.target.value)}
               />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout } from "antd";
+import { Divider, Layout } from "antd";
 import { HeadComponent } from "../../components/Head";
 import { AdsenseComplete } from "../../components/Adsense/AdsenseComplete";
 import { useRouter } from "next/router";
@@ -11,6 +11,8 @@ export default function Result() {
   const [item, setItem] = useState(null);
   const [resultItem, setResultItem] = useState(null);
   const [total, setTotal] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [contentTotalCount, setContentTotalCount] = useState(0);
   const [name, setName] = useState("");
   useEffect(() => {
     const { jsonItem } = router.query;
@@ -24,9 +26,7 @@ export default function Result() {
       const result = localStorage.getItem("f5game-test-result")
         ? JSON.parse(localStorage.getItem("f5game-test-result"))
         : "";
-      const totalCount = localStorage.getItem("f5game-test-total")
-        ? localStorage.getItem("f5game-test-total")
-        : 0;
+      const totalCount = result.totalCount ? result.totalCount : 0;
       if (result === "") {
         location.href = `/start/${link}`;
       }
@@ -34,9 +34,10 @@ export default function Result() {
       setResultItem(result);
 
       const contentTotalCount = item.contents.length;
+      setTotalCount(totalCount);
+      setContentTotalCount(contentTotalCount);
       const score = Math.ceil((totalCount * 100) / contentTotalCount);
       setTotal(score);
-
       setName(localName);
     }
   }, []);
@@ -51,12 +52,19 @@ export default function Result() {
               <h1 className="px-2 pt-4 pb-4 text-2xl font-bold text-center">
                 {name}님 결과분석
               </h1>
-              <AdsenseComplete />
-              {/* <img className="test-play-img" src={resultItem.url} alt="logo" /> */}
+              <AdsenseComplete slotId={item.adsenses.result} />
+              <img className="test-play-img" src={resultItem.url} alt="logo" />
               <div className="px-2 pt-4 text-2xl">
                 테스트 점수{" "}
-                <span className="text-blue-600 font-bold">{total}</span>점
+                <span className="text-blue-600 font-bold mr-2">{total} 점</span>
+                (
+                {item.type === "answer"
+                  ? `${totalCount} / ${contentTotalCount}`
+                  : ""}
+                )
               </div>
+
+              <Divider />
 
               <div className="test-result-text">
                 {resultItem.text.split("<br />").map((line, key) => {
@@ -68,7 +76,12 @@ export default function Result() {
                   );
                 })}
               </div>
-              <Share item={item} />
+              <Share
+                item={item}
+                total={total}
+                totalCount={totalCount}
+                contentTotalCount={contentTotalCount}
+              />
 
               <h2 className="px-2 text-xl font-bold">
                 👉 다른 테스트 하러가기

@@ -4,7 +4,7 @@ import { message } from "antd";
 const success = () => {
   message.success("URL이 복사되었습니다.");
 };
-export const Share = ({ item }) => {
+export const Share = ({ item, total, totalCount, contentTotalCount }) => {
   const shareFacebook = () => {
     window.open(
       `https://www.facebook.com/sharer/sharer.php?u=https://test.f5game.co.kr/start/${encodeURIComponent(
@@ -72,7 +72,9 @@ export const Share = ({ item }) => {
         <a
           href={`https://twitter.com/intent/tweet?text=${
             item.title
-          }?&url=https://test.f5game.co.kr/start/${encodeURI(item.link)}`}
+          }%0A----------------%0A테스트점수 ${total}점%0Ahttps://test.f5game.co.kr/start/${encodeURI(
+            encodeURI(item.link)
+          )}`}
           target="_blank"
           rel="noreferrer"
         >

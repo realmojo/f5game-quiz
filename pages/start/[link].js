@@ -39,7 +39,7 @@ export default function Start({ item }) {
                 onChange={onChangeName}
               />
             </div>
-            <AdsenseStart />
+            <AdsenseStart slotId={item.adsenses.main} />
             <div className="text-center pt-2">
               <a href={`/play/${item.link}`}>
                 <Button type="primary" className="btn-start">

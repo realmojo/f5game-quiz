@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Layout, Radio, Space } from "antd";
 import { HeadComponent } from "../../components/Head";
-import { AdsenseStart } from "../../components/Adsense/AdsenseStart";
+import { AdsensePlay } from "../../components/Adsense/AdsensePlay";
 import { ResultLoading } from "../../components/ResultLoading";
 
 export default function Play({ item }) {
@@ -17,7 +17,7 @@ export default function Play({ item }) {
   };
 
   const doNext = (index) => {
-    if (!testAnswer[index]) {
+    if (testAnswer[index] === undefined) {
       alert("문항을 선택해 주세요");
       return;
     }
@@ -39,7 +39,11 @@ export default function Play({ item }) {
       <main className="test-main">
         <Layout className="test-layout">
           {isResultLoading ? (
-            <ResultLoading item={item} testAnswer={testAnswer} />
+            <ResultLoading
+              item={item}
+              testAnswer={testAnswer}
+              slotId={item.adsenses.loading}
+            />
           ) : (
             <React.Fragment>
               {item.contents[current].title.url ? (
@@ -76,7 +80,7 @@ export default function Play({ item }) {
                 </Space>
               </Radio.Group>
               <div className="mt-2">
-                <AdsenseStart />
+                <AdsensePlay slotId={item.adsenses.play} />
               </div>
               <div className="text-center mt-2">
                 <Button

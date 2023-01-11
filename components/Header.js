@@ -6,7 +6,7 @@ export const Header = ({ NODE_ENV }) => {
   return (
     <header>
       <div className="header-wrap">
-        <Link href="/">테스트모아</Link>
+        <Link href="/">테스트팡</Link>
         {NODE_ENV === "development" ? (
           <div className="pt-2 pr-2">
             <Link href="/make">

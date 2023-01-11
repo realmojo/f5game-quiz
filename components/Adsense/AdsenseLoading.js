@@ -10,7 +10,7 @@ export const AdsenseLoading = ({ slotId }) => {
           <AdSense.Google
             style={{ display: "block" }}
             client="ca-pub-9130836798889522"
-            slot={slotId ? slotId : "2985175854"}
+            slot={slotId ? slotId : "8405889464"}
             format="auto"
             responsive="true"
           />
@@ -24,7 +24,7 @@ export const AdsenseLoading = ({ slotId }) => {
             margin: "0 auto",
           }}
         >
-          애드센스
+          애드센스 {slotId}
         </div>
       )}
     </>

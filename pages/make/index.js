@@ -32,6 +32,11 @@ export default function Make({ S3_KEY }) {
   const [current, setCurrent] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [adsenses, setAdsenses] = useState({
+    main: "",
+    loading: "",
+    result: "",
+  });
   const next = () => {
     setCurrent(current + 1);
   };
@@ -46,8 +51,18 @@ export default function Make({ S3_KEY }) {
           `https://f5game.co.kr/api/test/?idx=${idx}`
         );
         setTestItem(data);
-        setTitle(data.title);
-        setDescription(data.description);
+        setTitle(data.title ? data.title : "");
+        setDescription(data.description ? data.description : "");
+        setAdsenses(
+          data.adsenses
+            ? data.adsenses
+            : {
+                main: "",
+                play: "",
+                loading: "",
+                result: "",
+              }
+        );
       })();
     }
   }, []);
@@ -74,6 +89,8 @@ export default function Make({ S3_KEY }) {
                 setTitle={setTitle}
                 description={description}
                 setDescription={setDescription}
+                adsenses={adsenses}
+                setAdsenses={setAdsenses}
               />
             ) : (
               ""

@@ -1,6 +1,6 @@
 import AdSense from "react-adsense";
 
-export const AdsenseStart = ({ slotId }) => {
+export const AdsensePlay = ({ slotId }) => {
   const isProduction = process.env.NODE_ENV === "production" ? true : false;
 
   return (
@@ -10,7 +10,7 @@ export const AdsenseStart = ({ slotId }) => {
           <AdSense.Google
             style={{ display: "block" }}
             client="ca-pub-9130836798889522"
-            slot={slotId ? slotId : "5039992541"}
+            slot={slotId ? slotId : "8625952132"}
             format="auto"
             responsive="true"
           />
