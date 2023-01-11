@@ -10,8 +10,6 @@ export const HeadComponent = ({ item }) => {
       <meta name="description" content={item.description} />
       <meta name="theme-color" content="#338ff1" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-      <link rel="canonical" href="https://test.f5game.co.kr" />
       <meta name="title" content={`${item.title} - 테스트팡`} />
       <meta name="plink" content="https://test.f5game.co.kr" />
       <meta name="description" content={item.description} />
@@ -42,6 +40,7 @@ export const HeadComponent = ({ item }) => {
             : "https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
         }
       />
+      <link rel="canonical" href={location.href} />
       <link
         rel="apple-touch-icon"
         content={
