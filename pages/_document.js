@@ -12,9 +12,18 @@ export default function Document() {
         name="google-site-verification"
         content="T-CortVSsy0RoZLDuauWWqEQzp4utIjPVcoSYEM0-U8"
       />
-      <script src="https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.js" />
-      <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+      <meta name="msvalidate.01" content="9D6C85394BA833AF09FFDD20770E7D56" />
       <script
+        defer
+        src="https://t1.kakaocdn.net/kakao_js_sdk/v1/kakao.min.js"
+      />
+      <script
+        defer
+        type="text/javascript"
+        src="//wcs.naver.net/wcslog.js"
+      ></script>
+      <script
+        defer
         type="text/javascript"
         dangerouslySetInnerHTML={{
           __html: `
@@ -32,6 +41,7 @@ export default function Document() {
         crossOrigin="anonymous"
       />
       <script
+        async
         type="text/javascript"
         dangerouslySetInnerHTML={{
           __html: `

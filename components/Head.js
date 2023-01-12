@@ -40,7 +40,7 @@ export const HeadComponent = ({ item, canonicalUrl }) => {
             : "https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
         }
       />
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={encodeURI(canonicalUrl)} />
       <link
         rel="apple-touch-icon"
         content={
