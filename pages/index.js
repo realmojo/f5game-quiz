@@ -10,7 +10,7 @@ export default function Home({ items, NODE_ENV }) {
   return (
     <>
       <Head>
-        <title>테스트팡 - 심심할 땐 재미있는 테스트들을 즐겨보세요.</title>
+        <title>테스트팡 - 재미있는 무료 테스트 모음</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="robots" content="index, follow" />
         <meta charSet="utf-8" />
@@ -22,10 +22,7 @@ export default function Home({ items, NODE_ENV }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="canonical" href="https://test.f5game.co.kr" />
-        <meta
-          name="title"
-          content="테스트팡 - 심심할 땐 재미있는 테스트들을 즐겨보세요."
-        />
+        <meta name="title" content="테스트팡 - 재미있는 무료 테스트 모음." />
         <meta name="plink" content="https://test.f5game.co.kr" />
         <meta
           name="description"
@@ -38,7 +35,7 @@ export default function Home({ items, NODE_ENV }) {
         <meta property="og:site_name" content="테스트팡" />
         <meta
           property="og:title"
-          content="테스트팡 - 심심할 땐 재미있는 테스트들을 즐겨보세요."
+          content="테스트팡 - 재미있는 무료 테스트 모음."
         />
         <meta
           property="og:description"
@@ -52,7 +49,7 @@ export default function Home({ items, NODE_ENV }) {
         <meta name="twitter:site" content="@test.f5game.co.kr" />
         <meta
           name="twitter:title"
-          content="테스트팡 - 심심할 땐 재미있는 테스트들을 즐겨보세요."
+          content="테스트팡 - 재미있는 무료 테스트 모음."
         />
         <meta
           name="twitter:description"

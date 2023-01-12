@@ -44,7 +44,14 @@ export default function Result() {
 
   return (
     <>
-      {item ? <HeadComponent item={item} /> : ""}
+      {item ? (
+        <HeadComponent
+          item={item}
+          canonicalUrl={`https://test.f5game.co.kr/result/${item.link}`}
+        />
+      ) : (
+        ""
+      )}
       <main className="test-main">
         <Layout className="test-layout">
           {resultItem ? (

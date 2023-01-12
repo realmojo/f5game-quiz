@@ -12,7 +12,10 @@ export default function Start({ item }) {
   };
   return (
     <>
-      <HeadComponent item={item} />
+      <HeadComponent
+        item={item}
+        canonicalUrl={`https://test.f5game.co.kr/start/${item.link}`}
+      />
       <div
         className="test-main-background"
         style={{
@@ -21,12 +24,12 @@ export default function Start({ item }) {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: 1024,
+          minHeight: 300,
           width: "100%",
           position: "absolute",
         }}
       ></div>
-      <main className="test-main">
+      <main className="test-main relative">
         <Layout className="test-layout">
           <div className="test-logo">
             <h1>{item.title}</h1>
@@ -54,7 +57,26 @@ export default function Start({ item }) {
   );
 }
 
-export const getServerSideProps = async ({ req, params }) => {
+export const getStaticPaths = async () => {
+  const { data } = await axios.get(
+    `${process.env.BASE_API_URL}/test/getTests.php`
+  );
+  const paths = [];
+  for (const item of data) {
+    paths.push({
+      params: {
+        link: item.link,
+      },
+    });
+  }
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+// export const getServerSideProps = async ({ req, params }) => {
+export const getStaticProps = async ({ req, params }) => {
   const { link } = params;
   const res = await axios.get(
     `${process.env.BASE_API_URL}/test/getTestByLink.php?link=${link}`

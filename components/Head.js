@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export const HeadComponent = ({ item }) => {
+export const HeadComponent = ({ item, canonicalUrl }) => {
   return (
     <Head>
       <title>{`${item.title} - 테스트팡`}</title>
@@ -40,7 +40,7 @@ export const HeadComponent = ({ item }) => {
             : "https://f5game.s3.ap-northeast-2.amazonaws.com/f5game.png"
         }
       />
-      <link rel="canonical" href={location.href} />
+      <link rel="canonical" href={canonicalUrl} />
       <link
         rel="apple-touch-icon"
         content={

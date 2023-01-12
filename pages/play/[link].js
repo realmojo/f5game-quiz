@@ -36,7 +36,10 @@ export default function Play({ item }) {
 
   return (
     <>
-      <HeadComponent item={item} />
+      <HeadComponent
+        item={item}
+        canonicalUrl={`https://test.f5game.co.kr/play/${item.link}`}
+      />
       <main className="test-main">
         <Layout className="test-layout">
           {isResultLoading ? (
