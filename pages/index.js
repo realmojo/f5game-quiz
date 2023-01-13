@@ -84,16 +84,11 @@ export default function Home({ items, NODE_ENV }) {
                     hoverable
                     size="small"
                     height={400}
-                    cover={
-                      <img
-                        alt={item.title}
-                        src={item.logo}
-                        width={320}
-                        height={320}
-                      />
-                    }
+                    cover={<img alt={item.title} src={item.logo} />}
                   >
-                    <Meta title={<h2 className="text-sm">{item.title}</h2>} />
+                    <Meta
+                      title={<h2 className="text-sm py-4">{item.title}</h2>}
+                    />
                   </Card>
                 </Link>
               </Col>

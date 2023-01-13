@@ -54,6 +54,10 @@ export default function Play({ item }) {
             <div>
               {offsets.map((offset) => (
                 <div className="test-item mb-4">
+                  <div className="test-play-title">
+                    {Number(current) + Number(offset) + 1}.{" "}
+                    {item.contents[Number(current) + Number(offset)].title.text}
+                  </div>
                   {item.contents[Number(current) + Number(offset)].title.url ? (
                     <div>
                       <img
@@ -71,11 +75,8 @@ export default function Play({ item }) {
                   ) : (
                     ""
                   )}
-                  <div className="test-play-title">
-                    {Number(current) + Number(offset) + 1}.{" "}
-                    {item.contents[Number(current) + Number(offset)].title.text}
-                  </div>
                   <Radio.Group
+                    className="mt-2"
                     onChange={(e) =>
                       onChangeTestAnswer(
                         Number(current) + Number(offset),

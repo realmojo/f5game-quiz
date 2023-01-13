@@ -59,8 +59,16 @@ export default function Result() {
               <h1 className="px-2 pt-4 pb-4 text-2xl font-bold text-center">
                 {name}님 결과분석
               </h1>
+              {resultItem.url ? (
+                <img
+                  className="test-play-img"
+                  src={resultItem.url}
+                  alt="logo"
+                />
+              ) : (
+                ""
+              )}
               <AdsenseComplete slotId={item.adsenses.result} />
-              <img className="test-play-img" src={resultItem.url} alt="logo" />
               <div className="px-2 pt-4 text-2xl">
                 테스트 점수{" "}
                 <span className="text-blue-600 font-bold mr-2">{total} 점</span>
