@@ -11,11 +11,11 @@ export const HeadComponent = ({ item, canonicalUrl }) => {
       <meta name="theme-color" content="#338ff1" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="title" content={`${item.title} - 테스트팡`} />
-      <meta name="plink" content="https://test.f5game.co.kr" />
+      <meta name="plink" content={encodeURI(canonicalUrl)} />
       <meta name="description" content={item.description} />
 
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://test.f5game.co.kr" />
+      <meta property="og:url" content={encodeURI(canonicalUrl)} />
       <meta property="og:article:author" content="F5game" />
       <meta property="og:site_name" content={`${item.title} - 테스트팡`} />
       <meta property="og:title" content={`${item.title} - 테스트팡`} />
@@ -29,7 +29,7 @@ export const HeadComponent = ({ item, canonicalUrl }) => {
         }
       />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@test.f5game.co.kr" />
+      <meta name="twitter:url" content={encodeURI(canonicalUrl)} />
       <meta name="twitter:title" content={`${item.title} - 테스트팡`} />
       <meta name="twitter:description" content={item.description} />
       <meta

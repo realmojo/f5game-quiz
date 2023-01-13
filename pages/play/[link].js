@@ -5,7 +5,9 @@ import { HeadComponent } from "../../components/Head";
 import { AdsensePlay } from "../../components/Adsense/AdsensePlay";
 import { ResultLoading } from "../../components/ResultLoading";
 
+const offsets = [0, 1, 2, 3];
 export default function Play({ item }) {
+  const contentLength = item.contents.length;
   const [current, setCurrent] = useState(0);
   const [testAnswer, setTestAnswer] = useState([]);
   const [isResultLoading, setIsResultLoading] = useState(false);
@@ -21,7 +23,7 @@ export default function Play({ item }) {
       alert("문항을 선택해 주세요");
       return;
     }
-    const nextValue = current + 1;
+    const nextValue = index + 1;
     if (nextValue === item.contents.length) {
       setIsResultLoading(true);
     } else {
@@ -49,53 +51,82 @@ export default function Play({ item }) {
               slotId={item.adsenses.loading}
             />
           ) : (
-            <React.Fragment>
-              {item.contents[current].title.url ? (
-                <div>
-                  <img
-                    className="test-play-img"
-                    src={item.contents[current].title.url}
-                    alt={item.contents[current].title.text}
-                  />
-                </div>
-              ) : (
-                ""
-              )}
+            <div>
+              {offsets.map((offset) => (
+                <div className="test-item mb-4">
+                  {item.contents[Number(current) + Number(offset)].title.url ? (
+                    <div>
+                      <img
+                        className="test-play-img"
+                        src={
+                          item.contents[Number(current) + Number(offset)].title
+                            .url
+                        }
+                        alt={
+                          item.contents[Number(current) + Number(offset)].title
+                            .text
+                        }
+                      />
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                  <div className="test-play-title">
+                    {Number(current) + Number(offset) + 1}.{" "}
+                    {item.contents[Number(current) + Number(offset)].title.text}
+                  </div>
+                  <Radio.Group
+                    onChange={(e) =>
+                      onChangeTestAnswer(
+                        Number(current) + Number(offset),
+                        e.target.value
+                      )
+                    }
+                    value={testAnswer[Number(current) + Number(offset)]}
+                  >
+                    <Space size={0} direction="vertical">
+                      {item.contents[
+                        Number(current) + Number(offset)
+                      ].questions.map((question, _index) => {
+                        return (
+                          <Radio
+                            className="test-play-radio"
+                            key={`${
+                              Number(current) + Number(offset)
+                            }-${_index}`}
+                            value={_index}
+                          >
+                            {question.text}
+                          </Radio>
+                        );
+                      })}
+                    </Space>
+                  </Radio.Group>
 
-              <div className="test-play-title">
-                {current + 1}. {item.contents[current].title.text}
-              </div>
-              <Radio.Group
-                onChange={(e) => onChangeTestAnswer(current, e.target.value)}
-                value={testAnswer[current]}
-              >
-                <Space size={0} direction="vertical">
-                  {item.contents[current].questions.map((question, _index) => {
-                    return (
-                      <Radio
-                        className="test-play-radio"
-                        key={`${current}-${_index}`}
-                        value={_index}
-                      >
-                        {question.text}
-                      </Radio>
-                    );
-                  })}
-                </Space>
-              </Radio.Group>
-              <div className="mt-2">
-                <AdsensePlay slotId={item.adsenses.play} />
-              </div>
-              <div className="text-center mt-2">
-                <Button
-                  type="primary"
-                  className="btn-start"
-                  onClick={() => doNext(current)}
-                >
-                  다음
-                </Button>
-              </div>
-            </React.Fragment>
+                  {(Number(current) + Number(offset)) % 4 === 3 ||
+                  Number(current) + Number(offset) === contentLength ? (
+                    <div className="my-3">
+                      <div className="mt-2">
+                        <AdsensePlay slotId={item.adsenses.play} />
+                      </div>
+                      <div className="text-center mt-4">
+                        <Button
+                          type="primary"
+                          className="btn-start"
+                          onClick={() =>
+                            doNext(Number(current) + Number(offset))
+                          }
+                        >
+                          다음
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ))}
+            </div>
           )}
         </Layout>
       </main>
