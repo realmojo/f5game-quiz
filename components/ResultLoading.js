@@ -8,7 +8,7 @@ export const ResultLoading = ({ item, testAnswer, slotId }) => {
   useEffect(() => {
     if (testAnswer.length === 0) {
       alert("올바르지 않은 경로입니다.");
-      location.href = item.link ? `/start/${item.link}` : "/";
+      location.href = item.link ? `/main/${item.link}` : "/";
     }
     let totalCount = 0;
 

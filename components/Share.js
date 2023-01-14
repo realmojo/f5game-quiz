@@ -7,7 +7,7 @@ const success = () => {
 export const Share = ({ item, total, totalCount, contentTotalCount }) => {
   const shareFacebook = () => {
     window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=https://test.f5game.co.kr/start/${encodeURIComponent(
+      `https://www.facebook.com/sharer/sharer.php?u=https://test.f5game.co.kr/main/${encodeURIComponent(
         item.link
       )}&t=${item.title}`,
       "_blank",
@@ -17,7 +17,7 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
   const copy = () => {
     success();
     var textarea = document.createElement("textarea");
-    textarea.value = `https://test.f5game.co.kr/start/${item.link}`;
+    textarea.value = `https://test.f5game.co.kr/main/${item.link}`;
 
     document.body.appendChild(textarea);
     textarea.select();
@@ -44,16 +44,16 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
           description: item.description,
           imageUrl: item.logo,
           link: {
-            mobileWebUrl: `https://test.f5game.co.kr/start/${item.link}`,
-            webUrl: `https://test.f5game.co.kr/start/${item.link}`,
+            mobileWebUrl: `https://test.f5game.co.kr/main/${item.link}`,
+            webUrl: `https://test.f5game.co.kr/main/${item.link}`,
           },
         },
         buttons: [
           {
             title: "플레이 하기",
             link: {
-              mobileWebUrl: `https://test.f5game.co.kr/start/${item.link}`,
-              webUrl: `https://test.f5game.co.kr/start/${item.link}`,
+              mobileWebUrl: `https://test.f5game.co.kr/main/${item.link}`,
+              webUrl: `https://test.f5game.co.kr/main/${item.link}`,
             },
           },
         ],
@@ -72,7 +72,7 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
         <a
           href={`https://twitter.com/intent/tweet?text=${
             item.title
-          }%0A----------------%0A테스트점수 ${total}점%0Ahttps://test.f5game.co.kr/start/${encodeURI(
+          }%0A----------------%0A테스트점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
             encodeURI(item.link)
           )}`}
           target="_blank"

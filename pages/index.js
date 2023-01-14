@@ -67,7 +67,7 @@ export default function Home({ items, NODE_ENV }) {
       <main>
         <Header NODE_ENV={NODE_ENV} />
         <Layout className="site-layout">
-          <Row className="mt-8 mb-24 px-4" gutter={[4, 4]}>
+          <Row className="mt-8 mb-24 px-4" gutter={[8, 8]}>
             {items.map((item, key) => (
               <Col
                 xs={12}
@@ -79,7 +79,7 @@ export default function Home({ items, NODE_ENV }) {
                 key={key}
                 className="pb-6"
               >
-                <Link href={`/start/${item.link}`} target="_blank">
+                <Link href={`/main/${item.link}`} target="_blank">
                   <Card
                     hoverable
                     size="small"

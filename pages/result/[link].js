@@ -21,14 +21,14 @@ export default function Result() {
     const localName = localStorage.getItem("f5game-test-name");
     if (jsonItem === undefined) {
       alert("올바르지 않은 경로입니다.");
-      location.href = `/start/${link}`;
+      location.href = `/main/${link}`;
     } else {
       const result = localStorage.getItem("f5game-test-result")
         ? JSON.parse(localStorage.getItem("f5game-test-result"))
         : "";
       const totalCount = result.totalCount ? result.totalCount : 0;
       if (result === "") {
-        location.href = `/start/${link}`;
+        location.href = `/main/${link}`;
       }
       setItem(item);
       setResultItem(result);

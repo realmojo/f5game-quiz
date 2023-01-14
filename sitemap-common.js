@@ -16,7 +16,7 @@ const replaceAll = (str, searchStr, replaceStr) => {
   );
   const pagesSitemap = `${data.map((item) => {
     return `<url>
-            <loc>${DOMAIN}/start/${encodeURI(item.link)}</loc>
+            <loc>${DOMAIN}/main/${encodeURI(item.link)}</loc>
             <lastmod>${item.regdate.substring(0, 10)}</lastmod>
           </url>
           `;

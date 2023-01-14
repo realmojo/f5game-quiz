@@ -28,7 +28,7 @@ export const TestList = () => {
             key={key}
             className="pb-6"
           >
-            <Link href={`/start/${item.link}`}>
+            <Link href={`/main/${item.link}`}>
               <Card
                 hoverable
                 size="small"

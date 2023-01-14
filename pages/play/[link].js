@@ -52,8 +52,11 @@ export default function Play({ item }) {
             />
           ) : (
             <div>
-              {offsets.map((offset) => (
-                <div className="test-item mb-4">
+              {offsets.map((offset, _index) => (
+                <div
+                  className="test-item mb-4"
+                  key={Number(current) + Number(offset)}
+                >
                   <div className="test-play-title">
                     {Number(current) + Number(offset) + 1}.{" "}
                     {item.contents[Number(current) + Number(offset)].title.text}
