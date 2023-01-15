@@ -67,7 +67,7 @@ export default function Home({ items, NODE_ENV }) {
       <main>
         <Header NODE_ENV={NODE_ENV} />
         <Layout className="site-layout">
-          <Row className="mt-8 mb-24 px-4" gutter={[8, 8]}>
+          <Row className="mt-4 mb-8 px-2" gutter={[8, 8]}>
             {items.map((item, key) => (
               <Col
                 xs={12}
@@ -77,7 +77,7 @@ export default function Home({ items, NODE_ENV }) {
                 xl={8}
                 xxl={8}
                 key={key}
-                className="pb-6"
+                className="pb-2"
               >
                 <Link href={`/main/${item.link}`} target="_blank">
                   <Card
@@ -87,7 +87,7 @@ export default function Home({ items, NODE_ENV }) {
                     cover={<img alt={item.title} src={item.logo} />}
                   >
                     <Meta
-                      title={<h2 className="text-sm py-4">{item.title}</h2>}
+                      title={<h2 className="text-sm py-2">{item.title}</h2>}
                     />
                   </Card>
                 </Link>

@@ -56,6 +56,9 @@ main {
   }
 }
 
+.ant-radio-group {
+  width: 100%;
+}
 .ant-btn-primary {
   background-color: #1677ff !important;
 }

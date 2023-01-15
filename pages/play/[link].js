@@ -57,10 +57,19 @@ export default function Play({ item }) {
                   className="test-item mb-4"
                   key={Number(current) + Number(offset)}
                 >
-                  <div className="test-play-title">
-                    {Number(current) + Number(offset) + 1}.{" "}
-                    {item.contents[Number(current) + Number(offset)].title.text}
-                  </div>
+                  {item.contents[Number(current) + Number(offset)].title
+                    .text ? (
+                    <div className="test-play-title">
+                      {Number(current) + Number(offset) + 1}.{" "}
+                      {
+                        item.contents[Number(current) + Number(offset)].title
+                          .text
+                      }
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
                   {item.contents[Number(current) + Number(offset)].title.url ? (
                     <div>
                       <img
@@ -93,15 +102,19 @@ export default function Play({ item }) {
                         Number(current) + Number(offset)
                       ].questions.map((question, _index) => {
                         return (
-                          <Radio
-                            className="test-play-radio"
+                          <React.Fragment
                             key={`${
                               Number(current) + Number(offset)
                             }-${_index}`}
-                            value={_index}
                           >
-                            {question.text}
-                          </Radio>
+                            {question.text ? (
+                              <Radio className="test-play-radio" value={_index}>
+                                {question.text}
+                              </Radio>
+                            ) : (
+                              ""
+                            )}
+                          </React.Fragment>
                         );
                       })}
                     </Space>
