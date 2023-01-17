@@ -94,6 +94,12 @@ export default function Home({ items, NODE_ENV }) {
               </Col>
             ))}
           </Row>
+
+          <div className="plus-add">
+            <a href="https://pf.kakao.com/_gqbxixj">
+              <img src="https://f5game.s3.ap-northeast-2.amazonaws.com/plus-add.png" />
+            </a>
+          </div>
         </Layout>
       </main>
     </>

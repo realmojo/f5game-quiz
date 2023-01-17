@@ -146,6 +146,16 @@ main {
   line-height: 1.63;
 }
 
+.plus-add {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 80px;
+  height: 80px;
+}
+
 @media (max-width: 600px) {
   header {
     width: 100%;
