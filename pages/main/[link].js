@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { AdsenseStart } from "../../components/Adsense/AdsenseStart";
 import { HeadComponent } from "../../components/Head";
 
-export default function Start({ item }) {
+export default function Main({ item }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const onChangeName = (e) => {

@@ -67,10 +67,14 @@ export default function Home({ items, NODE_ENV }) {
       <main>
         <Header NODE_ENV={NODE_ENV} />
         <Layout className="site-layout">
-          <Row className="mt-4 mb-8 px-2" gutter={[8, 8]}>
+          <Row
+            className="mt-4 mb-8 px-2"
+            gutter={[8, 8]}
+            style={{ marginLeft: 0, marginRight: 0 }}
+          >
             {items.map((item, key) => (
               <Col
-                xs={12}
+                xs={24}
                 sm={12}
                 md={8}
                 lg={8}
