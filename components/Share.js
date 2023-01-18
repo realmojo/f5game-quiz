@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { message } from "antd";
+import { message, Button } from "antd";
 
 const success = () => {
   message.success("URL이 복사되었습니다.");
@@ -64,59 +64,81 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
     createKakaoButton();
   }, []);
   return (
-    <div className="flex justify-center px-4 pt-4 pb-4">
-      <div
-        className="twitter-share-button inline"
-        style={{ cursor: "pointer" }}
-      >
-        <a
-          href={`https://twitter.com/intent/tweet?text=${
-            item.title
-          }%0A----------------%0A테스트점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
-            encodeURI(item.link)
-          )}`}
-          target="_blank"
-          rel="noreferrer"
+    <>
+      <div className="px-4">
+        <a href="https://pf.kakao.com/_gqbxixj">
+          <Button
+            className="btn-kakao-plus"
+            icon={
+              <img
+                src="https://f5game.s3.ap-northeast-2.amazonaws.com/kakaoplus.png"
+                alt="카카오톡 플러스친구"
+              />
+            }
+          >
+            카카오톡 플친 추가
+          </Button>
+        </a>
+        <div className="text-center pt-2 text-xs">
+          플친을 추가하고 테스트 알림을 받아보세요
+        </div>
+      </div>
+      <div className="flex justify-center px-4 pt-4 pb-4">
+        <div
+          className="twitter-share-button inline"
+          style={{ cursor: "pointer" }}
+        >
+          <a
+            href={`https://twitter.com/intent/tweet?text=${
+              item.title
+            }%0A----------------%0A테스트점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
+              encodeURI(item.link)
+            )}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src="https://f5game.s3.ap-northeast-2.amazonaws.com/twitter.png"
+              alt="twitter-share-icon"
+              style={{ width: 90 }}
+            />
+          </a>
+        </div>
+        <div
+          className="facebook-share-button pt-1 inline"
+          onClick={() => shareFacebook()}
+          style={{ cursor: "pointer" }}
         >
           <img
-            src="https://f5game.s3.ap-northeast-2.amazonaws.com/twitter.png"
-            alt="twitter-share-icon"
-            style={{ width: 90 }}
+            src="https://f5game.s3.ap-northeast-2.amazonaws.com/facebook.png"
+            alt="facebook-share-icon"
+            style={{ width: 80 }}
           />
-        </a>
-      </div>
-      <div
-        className="facebook-share-button pt-1 inline"
-        onClick={() => shareFacebook()}
-        style={{ cursor: "pointer" }}
-      >
-        <img
-          src="https://f5game.s3.ap-northeast-2.amazonaws.com/facebook.png"
-          alt="facebook-share-icon"
-          style={{ width: 80 }}
-        />
-      </div>
-      <div className="kakao-share-button inline" style={{ cursor: "pointer" }}>
-        <button id="kakao-link-btn">
+        </div>
+        <div
+          className="kakao-share-button inline"
+          style={{ cursor: "pointer" }}
+        >
+          <button id="kakao-link-btn">
+            <img
+              src="https://f5game.s3.ap-northeast-2.amazonaws.com/kakao.png"
+              alt="kakao-share-icon"
+              style={{ width: 90 }}
+            />
+          </button>
+        </div>
+        <div
+          className="link-share-button inline pt-2"
+          onClick={() => copy()}
+          style={{ cursor: "pointer" }}
+        >
           <img
-            src="https://f5game.s3.ap-northeast-2.amazonaws.com/kakao.png"
-            alt="kakao-share-icon"
-            style={{ width: 90 }}
+            src="https://f5game.s3.ap-northeast-2.amazonaws.com/link.png"
+            alt="link-share-icon"
+            style={{ width: 70 }}
           />
-        </button>
+        </div>
       </div>
-
-      <div
-        className="link-share-button inline pt-2"
-        onClick={() => copy()}
-        style={{ cursor: "pointer" }}
-      >
-        <img
-          src="https://f5game.s3.ap-northeast-2.amazonaws.com/link.png"
-          alt="link-share-icon"
-          style={{ width: 70 }}
-        />
-      </div>
-    </div>
+    </>
   );
 };
