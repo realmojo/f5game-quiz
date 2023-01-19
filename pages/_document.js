@@ -65,6 +65,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     })(window, document, "clarity", "script", "feybr6kyxk");`,
         }}
       />
+      <script
+        defer
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9130836798889522",
+    enable_page_level_ads: true,
+    overlays: {bottom: true}
+  });`,
+        }}
+      />
       <body>
         <Main />
         <NextScript />
