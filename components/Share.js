@@ -65,23 +65,8 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
   }, []);
   return (
     <>
-      <div className="px-4">
-        <a href="https://pf.kakao.com/_gqbxixj">
-          <Button
-            className="btn-kakao-plus"
-            icon={
-              <img
-                src="https://f5game.s3.ap-northeast-2.amazonaws.com/kakaoplus.png"
-                alt="카카오톡 플러스친구"
-              />
-            }
-          >
-            카카오톡 플친 추가
-          </Button>
-        </a>
-        <div className="text-center pt-2 text-xs">
-          플친을 추가하고 테스트 알림을 받아보세요
-        </div>
+      <div className="pt-4">
+        <h2 className="px-2 text-xl font-bold">👉 테스트 공유하기</h2>
       </div>
       <div className="flex justify-center px-4 pt-4 pb-4">
         <div
@@ -91,7 +76,7 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
           <a
             href={`https://twitter.com/intent/tweet?text=${
               item.title
-            }%0A----------------%0A테스트결과점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
+            }%0A----------------%0A테스트 결과 점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
               encodeURI(item.link)
             )}%0A#테스트결과 #테스트팡`}
             target="_blank"
@@ -138,6 +123,21 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
             style={{ width: 70 }}
           />
         </div>
+      </div>
+      <div className="px-4 mb-4">
+        <a href="https://pf.kakao.com/_gqbxixj">
+          <Button
+            className="btn-kakao-plus"
+            icon={
+              <img
+                src="https://f5game.s3.ap-northeast-2.amazonaws.com/kakaoplus.png"
+                alt="카카오톡 플러스친구"
+              />
+            }
+          >
+            카카오톡 플친 추가
+          </Button>
+        </a>
       </div>
     </>
   );
