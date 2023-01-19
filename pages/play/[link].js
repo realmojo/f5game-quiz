@@ -19,15 +19,25 @@ export default function Play({ item }) {
   };
 
   const doNext = (index) => {
-    if (testAnswer[index] === undefined) {
+    if (index < contentLength && testAnswer[index] === undefined) {
       alert("문항을 선택해 주세요");
       return;
     }
-    const nextValue = index + 1;
-    if (nextValue === item.contents.length) {
-      setIsResultLoading(true);
-    } else {
-      setCurrent(nextValue);
+    console.log(item);
+    if (item.type === "score") {
+      const nextValue = index + 1;
+      if (index === item.contents.length) {
+        setIsResultLoading(true);
+      } else {
+        setCurrent(nextValue);
+      }
+    } else if (item.type === "answer") {
+      const nextValue = index + 1;
+      if (nextValue === item.contents.length) {
+        setIsResultLoading(true);
+      } else {
+        setCurrent(nextValue);
+      }
     }
     window.scrollTo(0, 0);
   };
@@ -57,8 +67,8 @@ export default function Play({ item }) {
                   className="test-item mb-4"
                   key={Number(current) + Number(offset)}
                 >
-                  {item.contents[Number(current) + Number(offset)].title
-                    .text ? (
+                  {item.contents[Number(current) + Number(offset)] &&
+                  item.contents[Number(current) + Number(offset)].title.text ? (
                     <div className="test-play-title">
                       {Number(current) + Number(offset) + 1}.{" "}
                       {
@@ -69,8 +79,8 @@ export default function Play({ item }) {
                   ) : (
                     ""
                   )}
-
-                  {item.contents[Number(current) + Number(offset)].title.url ? (
+                  {item.contents[Number(current) + Number(offset)] &&
+                  item.contents[Number(current) + Number(offset)].title.url ? (
                     <div>
                       <img
                         className="test-play-img"
@@ -87,57 +97,70 @@ export default function Play({ item }) {
                   ) : (
                     ""
                   )}
-                  <Radio.Group
-                    className="mt-2"
-                    onChange={(e) =>
-                      onChangeTestAnswer(
-                        Number(current) + Number(offset),
-                        e.target.value
-                      )
-                    }
-                    value={testAnswer[Number(current) + Number(offset)]}
-                  >
-                    <Space size={0} direction="vertical">
-                      {item.contents[
-                        Number(current) + Number(offset)
-                      ].questions.map((question, _index) => {
-                        return (
-                          <React.Fragment
-                            key={`${
-                              Number(current) + Number(offset)
-                            }-${_index}`}
-                          >
-                            {question.text ? (
-                              <Radio className="test-play-radio" value={_index}>
-                                {question.text}
-                              </Radio>
-                            ) : (
-                              ""
-                            )}
-                          </React.Fragment>
-                        );
-                      })}
-                    </Space>
-                  </Radio.Group>
+                  {item.contents[Number(current) + Number(offset)] ? (
+                    <Radio.Group
+                      className="mt-2"
+                      onChange={(e) =>
+                        onChangeTestAnswer(
+                          Number(current) + Number(offset),
+                          e.target.value
+                        )
+                      }
+                      value={testAnswer[Number(current) + Number(offset)]}
+                    >
+                      <Space size={0} direction="vertical">
+                        {item.contents[
+                          Number(current) + Number(offset)
+                        ].questions.map((question, _index) => {
+                          return (
+                            <React.Fragment
+                              key={`${
+                                Number(current) + Number(offset)
+                              }-${_index}`}
+                            >
+                              {question.text ? (
+                                <Radio
+                                  className="test-play-radio"
+                                  value={_index}
+                                >
+                                  {question.text}
+                                </Radio>
+                              ) : (
+                                ""
+                              )}
+                            </React.Fragment>
+                          );
+                        })}
+                      </Space>
+                    </Radio.Group>
+                  ) : (
+                    ""
+                  )}
 
-                  {(Number(current) + Number(offset)) % 4 === 3 ||
-                  Number(current) + Number(offset) === contentLength ? (
-                    <div className="my-3">
-                      <div className="mt-2">
-                        <AdsensePlay slotId={item.adsenses.play} />
-                      </div>
-                      <div className="text-center mt-4">
-                        <Button
-                          type="primary"
-                          className="btn-start"
-                          onClick={() =>
-                            doNext(Number(current) + Number(offset))
-                          }
-                        >
-                          다음
-                        </Button>
-                      </div>
-                    </div>
+                  {Number(current) + Number(offset) <= contentLength ? (
+                    <>
+                      {(Number(current) + Number(offset)) % 4 === 3 ||
+                      Number(current) + Number(offset) === contentLength ? (
+                        <div className="my-3">
+                          <div className="mt-2">
+                            <AdsensePlay slotId={item.adsenses.play} />
+                          </div>
+                          <div className="text-center mt-4">
+                            <Button
+                              type="primary"
+                              className="btn-start"
+                              onClick={() =>
+                                doNext(Number(current) + Number(offset))
+                              }
+                            >
+                              다음
+                            </Button>
+                          </div>
+                        </div>
+                      ) : (
+                        ""
+                      )}
+                    </>
                   ) : (
                     ""
                   )}

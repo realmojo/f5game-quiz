@@ -68,17 +68,24 @@ export default function Result() {
               ) : (
                 ""
               )}
-              <div className="px-2 pt-4 text-2xl">
-                테스트 점수{" "}
-                <span className="text-blue-600 font-bold mr-2">{total} 점</span>
-                (
-                {item.type === "answer"
-                  ? `${totalCount} / ${contentTotalCount}`
-                  : ""}
-                )
-              </div>
-
-              <Divider />
+              {item.type === "answer" ? (
+                <>
+                  <div className="px-2 pt-4 text-2xl">
+                    테스트 점수{" "}
+                    <span className="text-blue-600 font-bold mr-2">
+                      {total} 점
+                    </span>
+                    (
+                    {item.type === "answer"
+                      ? `${totalCount} / ${contentTotalCount}`
+                      : ""}
+                    )
+                  </div>
+                  <Divider />
+                </>
+              ) : (
+                ""
+              )}
 
               <div className="test-result-text">
                 {resultItem.text.split("<br />").map((line, key) => {

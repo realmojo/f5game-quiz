@@ -75,8 +75,8 @@ export default function Home({ items, NODE_ENV }) {
             {items.map((item, key) => (
               <Col
                 xs={24}
-                sm={12}
-                md={8}
+                sm={24}
+                md={12}
                 lg={8}
                 xl={8}
                 xxl={8}

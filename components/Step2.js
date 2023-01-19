@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input, Button, Divider, Radio } from "antd";
+import { Input, Button, Divider, Radio, InputNumber } from "antd";
 import AWS from "aws-sdk";
 import shortId from "shortid";
 import axios from "axios";
@@ -13,24 +13,28 @@ const defaultContent = {
   questions: [
     {
       key: 0,
+      score: 0,
       type: "text", // image
       text: "",
       url: "",
     },
     {
       key: 1,
+      score: 0,
       type: "text", // image
       text: "",
       url: "",
     },
     {
       key: 2,
+      score: 0,
       type: "text", // image
       text: "",
       url: "",
     },
     {
       key: 3,
+      score: 0,
       type: "text", // image
       text: "",
       url: "",
@@ -146,6 +150,22 @@ export const Step2 = ({ next, prev, idx, testItem, S3_KEY }) => {
     setContents(d);
   };
 
+  const onChangeScoreContent = (index, _index, value) => {
+    const d = contents.map((item, key) => {
+      if (key === index) {
+        const q = item.questions;
+        q[_index].score = Number(value);
+        return {
+          ...item,
+          questions: q,
+        };
+      } else {
+        return item;
+      }
+    });
+    setContents(d);
+  };
+
   const onChangeAnswer = (index, key, value) => {};
 
   const addSetQuestionArr = () => {
@@ -160,24 +180,28 @@ export const Step2 = ({ next, prev, idx, testItem, S3_KEY }) => {
         questions: [
           {
             key: 0,
+            score: 0,
             type: "text", // image
             text: "",
             url: "",
           },
           {
             key: 1,
+            score: 0,
             type: "text", // image
             text: "",
             url: "",
           },
           {
             key: 2,
+            score: 0,
             type: "text", // image
             text: "",
             url: "",
           },
           {
             key: 3,
+            score: 0,
             type: "text", // image
             text: "",
             url: "",
@@ -317,6 +341,16 @@ export const Step2 = ({ next, prev, idx, testItem, S3_KEY }) => {
                         value={_item.text}
                         onChange={(e) =>
                           onChangeQuestionContent(key, _key, e.target.value)
+                        }
+                      />
+                      <Input
+                        type="number"
+                        min={1}
+                        max={4}
+                        defaultValue={0}
+                        value={_item.score}
+                        onChange={(e) =>
+                          onChangeScoreContent(key, _key, e.target.value)
                         }
                       />
                     </div>

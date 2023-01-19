@@ -19,9 +19,9 @@ export const TestList = () => {
       {list.length > 0 &&
         list.map((item, key) => (
           <Col
-            xs={12}
-            sm={12}
-            md={8}
+            xs={24}
+            sm={24}
+            md={12}
             lg={8}
             xl={8}
             xxl={8}

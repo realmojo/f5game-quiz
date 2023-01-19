@@ -14,8 +14,12 @@ export const ResultLoading = ({ item, testAnswer, slotId }) => {
 
     if (item.contents.length > 0) {
       for (const i in item.contents) {
-        if (item.contents[i].answer === testAnswer[i]) {
-          totalCount++;
+        if (item.type === "answer") {
+          if (item.contents[i].answer === testAnswer[i]) {
+            totalCount++;
+          }
+        } else if (item.type === "score") {
+          totalCount += item.contents[i].questions[testAnswer[i]].score;
         }
       }
 
