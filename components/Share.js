@@ -91,9 +91,9 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
           <a
             href={`https://twitter.com/intent/tweet?text=${
               item.title
-            }%0A----------------%0A테스트점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
+            }%0A----------------%0A테스트결과점수 ${total}점%0Ahttps://test.f5game.co.kr/main/${encodeURI(
               encodeURI(item.link)
-            )}`}
+            )}%0A#테스트결과 #테스트팡`}
             target="_blank"
             rel="noreferrer"
           >
