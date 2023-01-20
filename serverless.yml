@@ -3,3 +3,6 @@ testpang-deploy:
   inputs:
     bucketName: "f5game-test"
     bucketRegion: "ap-northeast-2"
+  cloudfront:
+    distributionId: "E2Q9W29AP66F5E"
+    comment: "testpang deploy"
