@@ -3,6 +3,7 @@ import { Layout, Card, Col, Row } from "antd";
 import { Header } from "../components/Header";
 import Link from "next/link";
 import axios from "axios";
+import { Footer } from "../components/Footer";
 
 const { Meta } = Card;
 
@@ -106,6 +107,7 @@ export default function Home({ items, NODE_ENV }) {
           </div>
         </Layout>
       </main>
+      <Footer />
     </>
   );
 }

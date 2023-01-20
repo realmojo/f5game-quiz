@@ -196,3 +196,13 @@ main {
     padding-top: 0;
   }
 }
+
+.footer-info {
+  background-color: #e6e6e6;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #c5c2c2;
+  font-size: 12px;
+}
