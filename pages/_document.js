@@ -12,6 +12,9 @@ export default function Document() {
         name="google-site-verification"
         content="T-CortVSsy0RoZLDuauWWqEQzp4utIjPVcoSYEM0-U8"
       />
+      <link rel="manifest" href="manifest.json" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="msvalidate.01" content="9D6C85394BA833AF09FFDD20770E7D56" />
       <script
         defer
