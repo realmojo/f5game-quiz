@@ -34,8 +34,17 @@ header > .header-wrap > a {
   /* font-weight: bold; */
 }
 header > .header-wrap > button {
-  padding-right: 14px;
   color: white;
+  border: none;
+  background-color: #0088ff;
+  float: right;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+header > .header-wrap > button:hover {
+  background-color: #0376db;
+  color: white !important;
+  margin-top: 4px;
 }
 
 main {
@@ -205,4 +214,7 @@ main {
   align-items: center;
   color: #c5c2c2;
   font-size: 12px;
+}
+.ant-card-cover > img {
+  box-shadow: 2px 2px 8px gray;
 }

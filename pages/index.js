@@ -66,7 +66,7 @@ export default function Home({ items, NODE_ENV }) {
         />
       </Head>
       <main>
-        <Header NODE_ENV={NODE_ENV} />
+        <Header NODE_ENV={NODE_ENV} items={items} />
         <Layout className="site-layout">
           <Row
             className="mt-4 mb-8 px-2"
