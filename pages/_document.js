@@ -50,6 +50,7 @@ export default function Document(NODE_ENV) {
             crossOrigin="anonymous"
           />
           <script
+            async
             type="text/javascript"
             dangerouslySetInnerHTML={{
               __html: `
