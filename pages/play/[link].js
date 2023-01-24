@@ -23,7 +23,7 @@ export default function Play({ item }) {
       alert("문항을 선택해 주세요");
       return;
     }
-    console.log(item);
+
     if (item.type === "score") {
       const nextValue = index + 1;
       if (index === item.contents.length) {
@@ -31,7 +31,7 @@ export default function Play({ item }) {
       } else {
         setCurrent(nextValue);
       }
-    } else if (item.type === "answer") {
+    } else if (item.type === "answer" || item.type === "random") {
       const nextValue = index + 1;
       if (nextValue === item.contents.length) {
         setIsResultLoading(true);

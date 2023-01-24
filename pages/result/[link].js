@@ -23,22 +23,31 @@ export default function Result() {
       alert("올바르지 않은 경로입니다.");
       location.href = `/main/${link}`;
     } else {
-      const result = localStorage.getItem("f5game-test-result")
-        ? JSON.parse(localStorage.getItem("f5game-test-result"))
-        : "";
-      const totalCount = result.totalCount ? result.totalCount : 0;
-      if (result === "") {
-        location.href = `/main/${link}`;
-      }
-      setItem(item);
-      setResultItem(result);
+      if (item.type === "random") {
+        const result = localStorage.getItem("f5game-test-result")
+          ? JSON.parse(localStorage.getItem("f5game-test-result"))
+          : "";
+        setItem(item);
+        setResultItem(result);
+      } else {
+        const result = localStorage.getItem("f5game-test-result")
+          ? JSON.parse(localStorage.getItem("f5game-test-result"))
+          : "";
 
-      const contentTotalCount = item.contents.length;
-      setTotalCount(totalCount);
-      setContentTotalCount(contentTotalCount);
-      const score = Math.ceil((totalCount * 100) / contentTotalCount);
-      setTotal(score);
-      setName(localName);
+        const totalCount = result.totalCount ? result.totalCount : 0;
+        if (result === "") {
+          location.href = `/main/${link}`;
+        }
+        setItem(item);
+        setResultItem(result);
+
+        const contentTotalCount = item.contents.length;
+        setTotalCount(totalCount);
+        setContentTotalCount(contentTotalCount);
+        const score = Math.ceil((totalCount * 100) / contentTotalCount);
+        setTotal(score);
+        setName(localName);
+      }
     }
   }, []);
 

@@ -3,6 +3,9 @@ import { Spin, Button } from "antd";
 import Link from "next/link";
 import { AdsenseLoading } from "./Adsense/AdsenseLoading";
 
+const getRandomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 export const ResultLoading = ({ item, testAnswer, slotId }) => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -24,16 +27,24 @@ export const ResultLoading = ({ item, testAnswer, slotId }) => {
       }
 
       let results = null;
-      for (const i in item.results) {
-        if (
-          item.results[i].min <= totalCount &&
-          totalCount <= item.results[i].max
-        ) {
-          results = item.results[i];
-          localStorage.setItem(
-            "f5game-test-result",
-            JSON.stringify({ ...results, totalCount })
-          );
+      if (item.type === "random") {
+        const ran = getRandomNumber(0, item.results.length - 1);
+        localStorage.setItem(
+          "f5game-test-result",
+          JSON.stringify({ ...item.results[ran], totalCount })
+        );
+      } else {
+        for (const i in item.results) {
+          if (
+            item.results[i].min <= totalCount &&
+            totalCount <= item.results[i].max
+          ) {
+            results = item.results[i];
+            localStorage.setItem(
+              "f5game-test-result",
+              JSON.stringify({ ...results, totalCount })
+            );
+          }
         }
       }
     }

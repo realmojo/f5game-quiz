@@ -108,7 +108,12 @@ export const Share = ({ item, total, totalCount, contentTotalCount }) => {
             <img
               src="https://f5game.s3.ap-northeast-2.amazonaws.com/kakao.png"
               alt="kakao-share-icon"
-              style={{ width: 90 }}
+              style={{
+                width: 70,
+                marginTop: 10,
+                marginLeft: 10,
+                marginRight: 10,
+              }}
             />
           </button>
         </div>

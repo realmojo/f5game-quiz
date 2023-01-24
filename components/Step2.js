@@ -287,6 +287,7 @@ export const Step2 = ({ next, prev, idx, testItem, S3_KEY }) => {
           >
             <Radio value="answer">정답형</Radio>
             <Radio value="score">점수형</Radio>
+            <Radio value="random">랜덤형</Radio>
           </Radio.Group>
           {/* <div className="test-subtitle mb-1">테스트 문항 개수</div>
           <InputNumber

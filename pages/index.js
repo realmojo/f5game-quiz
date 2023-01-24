@@ -69,7 +69,7 @@ export default function Home({ items, NODE_ENV }) {
         <Header NODE_ENV={NODE_ENV} items={items} />
         <Layout className="site-layout">
           <Row
-            className="mt-4 mb-8 px-2"
+            className="pt-4 pb-4 px-2"
             gutter={[8, 8]}
             style={{ marginLeft: 0, marginRight: 0 }}
           >
