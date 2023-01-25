@@ -1,0 +1,8 @@
+testpang-deploy:
+  component: "./node_modules/@sls-next/serverless-component"
+  inputs:
+    bucketName: "f5game-test"
+    bucketRegion: "ap-northeast-2"
+    cloudfront:
+      distributionId: "E2XS98IJ0240FH"
+      comment: "testpang deploy"
